@@ -30,3 +30,23 @@
 *.exe
 *.out
 *.app
+
+# autotools generated files
+configure
+autom4te.cache
+Makefile.in
+aclocal.m4
+config.guess
+config.sub
+depcomp
+install-sh
+ltmain.sh
+m4
+missing
+ar-lib
+config.h.in
+*~
+compile
+
+# temporary build directories
+build

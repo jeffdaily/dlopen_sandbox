@@ -1,18 +1,15 @@
-CXXFLAGS = -Wall -Wextra
+CXXFLAGS = -Wall -Wextra -fPIC
 
-all: libdriver.so libruntime.so
-
-driver.o: driver.cpp driver.h
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-libdriver.so: driver.o
-	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $<
+all: libruntime.so
 
 runtime.o: runtime.cpp runtime.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-libruntime.so: runtime.o
-	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $< -ldl
+DynamicLibrary.o: DynamicLibrary.cpp DynamicLibrary.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+libruntime.so: runtime.o DynamicLibrary.o
+	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $^ -ldl
 
 clean:
-	rm -f driver.o libdriver.so runtime.o libruntime.so
+	rm -f runtime.o libruntime.so DynamicLibrary.o
