@@ -1,7 +1,18 @@
-CFLAGS = -Wall -ansi -pedantic
+CXXFLAGS = -Wall -Wextra
 
-libdriver.so: driver.c driver.h
-	$(CC) -shared -fPIC $(CFLAGS) -o $@ $<
+all: libdriver.so libruntime.so
+
+driver.o: driver.cpp driver.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+libdriver.so: driver.o
+	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $<
+
+runtime.o: runtime.cpp runtime.h
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+libruntime.so: runtime.o
+	$(CXX) $(CXXFLAGS) -shared -fPIC -o $@ $< -ldl
 
 clean:
-	rm -f libdriver.so
+	rm -f driver.o libdriver.so runtime.o libruntime.so
