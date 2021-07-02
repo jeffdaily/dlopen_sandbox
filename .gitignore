@@ -47,6 +47,7 @@ ar-lib
 config.h.in
 *~
 compile
+build-aux
 
 # temporary build directories
 build
