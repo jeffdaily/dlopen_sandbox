@@ -1,6 +1,6 @@
 #pragma once
 
-int driver_init();
-int driver_reference_counter(int *count);
-int driver_close();
+int racecar_driver_init();
+int racecar_driver_counter(int *count);
+int racecar_driver_close();
 

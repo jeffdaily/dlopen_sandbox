@@ -1,3 +1,6 @@
 #pragma once
 
-void runtime_init();
+void racecar_runtime_init();
+int racecar_runtime_counter();
+
+

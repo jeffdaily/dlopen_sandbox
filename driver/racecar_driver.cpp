@@ -7,7 +7,7 @@ int racecar_driver_init() {
     return 0;
 }
 
-int racecar_driver_reference_counter(int *count)
+int racecar_driver_counter(int *count)
 {
     *count = counter;
     return 0;
