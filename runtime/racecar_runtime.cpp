@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 
@@ -9,13 +10,14 @@
 
 namespace dynamic {
 
-DynamicLibrary getLibrary() {
+DynamicLibrary &getLibrary() {
     static DynamicLibrary lib("libracecar_driver.so");
     return lib;
 }
 
 int racecar_driver_init() {
     auto fn = reinterpret_cast<decltype(&racecar_driver_init)>(getLibrary().sym(__func__));
+    std::cout << "racecar_runtime wrapper for " << __func__ << " fn=" << fn << std::endl;
     if (!fn)
         throw std::runtime_error(std::string("Can't get ") + __func__);
     return fn();
@@ -23,6 +25,7 @@ int racecar_driver_init() {
 
 int racecar_driver_counter(int *count) {
     auto fn = reinterpret_cast<decltype(&racecar_driver_counter)>(getLibrary().sym(__func__));
+    std::cout << "racecar_runtime wrapper for " << __func__ << " fn=" << fn << std::endl;
     if (!fn)
         throw std::runtime_error(std::string("Can't get ") + __func__);
     return fn(count);
@@ -30,6 +33,7 @@ int racecar_driver_counter(int *count) {
 
 int racecar_driver_close() {
     auto fn = reinterpret_cast<decltype(&racecar_driver_close)>(getLibrary().sym(__func__));
+    std::cout << "racecar_runtime wrapper for " << __func__ << " fn=" << fn << std::endl;
     if (!fn)
         throw std::runtime_error(std::string("Can't get ") + __func__);
     return fn();

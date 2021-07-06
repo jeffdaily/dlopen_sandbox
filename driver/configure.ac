@@ -23,7 +23,7 @@ AC_PROG_CC
 
 # Checks for library functions.
 
-LT_INIT([disable-static])
+LT_INIT
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

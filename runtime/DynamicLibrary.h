@@ -1,8 +1,8 @@
 #pragma once
 
-struct DynamicLibrary {
-
-  DynamicLibrary(const char* name, const char* alt_name = nullptr);
+class DynamicLibrary {
+ public:
+  explicit DynamicLibrary(const char* name, const char* alt_name = nullptr);
 
   void* sym(const char* name);
 
