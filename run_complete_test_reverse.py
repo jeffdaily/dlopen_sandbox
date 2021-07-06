@@ -1,7 +1,7 @@
-import one_caller
 import two_caller
+import one_caller
 
-one = one_caller.init()
 two = two_caller.init()
-print(one_caller.counter())
+one = one_caller.init()
 print(two_caller.counter())
+print(one_caller.counter())

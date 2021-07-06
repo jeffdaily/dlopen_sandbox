@@ -20,9 +20,10 @@ RUN cd runtime_two && autoreconf -fi && mkdir build && cd build && ../configure 
 
 RUN cd py_one && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
 
-#RUN cd py_two && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
 RUN cd py_two && python3.6 setup.py bdist_wheel && python3.6 -m pip install dist/*.whl
+
+WORKDIR /root/dlopen_sandbox
 
 RUN python3.6 ./run_complete_test.py
 
-WORKDIR /root/dlopen_sandbox
+RUN python3.6 ./run_complete_test_reverse.py
