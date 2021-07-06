@@ -10,12 +10,18 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib
 
 RUN git clone https://github.com/jeffdaily/dlopen_sandbox 
 
-RUN cd dlopen_sandbox/runtime_dlopened/driver && autoreconf -fi && mkdir build && cd build && ../configure && make && make check && make install
+WORKDIR /root/dlopen_sandbox/runtime_dlopened
 
-RUN cd dlopen_sandbox/runtime_dlopened/runtime && autoreconf -fi && mkdir build && cd build && ../configure && make && make check && make install
+RUN cd driver && autoreconf -fi && mkdir build && cd build && ../configure && make && make check && make install
 
-RUN cd dlopen_sandbox/runtime_dlopened/py_one && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
+RUN cd runtime_one && autoreconf -fi && mkdir build && cd build && ../configure && make && make check && make install
 
-RUN cd dlopen_sandbox/runtime_dlopened/py_two && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
+RUN cd runtime_two && autoreconf -fi && mkdir build && cd build && ../configure && make && make check && make install
 
-RUN cd dlopen_sandbox/runtime_dlopened && python3.6 ./run_complete_test.py
+RUN cd py_one && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
+
+RUN cd py_two && python3.6 setup.py bdist_wheel && python3.6 -m auditwheel repair dist/*.whl && python3.6 -m pip install wheelhouse/*.whl
+
+RUN python3.6 ./run_complete_test.py
+
+WORKDIR /root/dlopen_sandbox
