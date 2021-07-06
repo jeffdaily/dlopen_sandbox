@@ -51,3 +51,8 @@ build-aux
 
 # temporary build directories
 build
+
+# python manylinux
+dist
+*.egg-info
+wheelhouse
