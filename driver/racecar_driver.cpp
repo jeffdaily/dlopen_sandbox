@@ -4,24 +4,30 @@
 
 static int counter=0;
 
+#define COUT(addr) \
+std::cout << __func__ << "\t" << (void*)(addr) \
+          << "\tcounter\t" << counter \
+          << "\taddr\t" << &counter \
+          << std::endl
+
 int racecar_driver_init()
 {
     counter++;
-    std::cout << "racecar_driver_init counter " << counter << std::endl;
+    COUT(&racecar_driver_init);
     return 0;
 }
 
 int racecar_driver_counter(int *count)
 {
-    std::cout << "racecar_driver_counter" << std::endl;
     *count = counter;
+    COUT(&racecar_driver_counter);
     return 0;
 }
 
 int racecar_driver_close()
 {
     counter--;
-    std::cout << "racecar_driver_close counter " << counter << std::endl;
+    COUT(&racecar_driver_close);
     return 0;
 }
 

@@ -9,7 +9,7 @@ ext_modules = [
     Pybind11Extension(
         "two_caller",
         sources = sorted(glob("src/*.cpp")),  # Sort source files for reproducibility
-        libraries = ["racecar_runtime"],
+        libraries = ["racecar_runtime_two"],
         library_dirs = ["/usr/local/lib"],
         extra_compile_args = ["-std=c++11"]
     ),

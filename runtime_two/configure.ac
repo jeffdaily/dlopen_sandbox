@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([racecar_runtime], [1.0], [jeffrey.daily@gmail.com])
-AC_CONFIG_SRCDIR([racecar_runtime.cpp])
+AC_INIT([racecar_runtime_two], [1.0], [jeffrey.daily@gmail.com])
+AC_CONFIG_SRCDIR([racecar_runtime_two.cpp])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_CONFIG_AUX_DIR([build-aux])

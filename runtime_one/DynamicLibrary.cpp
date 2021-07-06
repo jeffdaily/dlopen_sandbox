@@ -27,19 +27,19 @@ DynamicLibrary::DynamicLibrary(const char* name, const char* alt_name) {
       std::cerr << "Error in dlopen for library " << name << std::endl;
     }
   }
-  std::cout << "DynamicLibrary(" << name << ") success, handle=" << handle << std::endl;
+  std::cout << "DynamicLibrary(" << name << ") handle=" << handle << std::endl;
 }
 
 void* DynamicLibrary::sym(const char* name) {
   assert(handle);
   auto val = checkDL(dlsym(handle, name));
-  std::cout << "DynamicLibrary::sym(" << name << ") value=" << val << std::endl;
+  std::cout << "DynamicLibrary::sym(" << name << ") value=" << (void*)val << std::endl;
   return val;
 }
 
 DynamicLibrary::~DynamicLibrary() {
   if (!handle)
     return;
-  std::cout << "DynamicLibrary::dtor dlclose handle=" << handle << std::endl;
+  std::cout << "DynamicLibrary::dtor handle=" << handle << std::endl;
   dlclose(handle);
 }
