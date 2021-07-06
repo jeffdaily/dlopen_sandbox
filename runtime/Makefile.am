@@ -1,6 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4
 
 AM_CPPFLAGS = -I ../driver -I ../../driver
+AM_CXXFLAGS = -std=c++11
 
 lib_LTLIBRARIES = libracecar_runtime.la
 libracecar_runtime_la_SOURCES = racecar_runtime.cpp DynamicLibrary.cpp

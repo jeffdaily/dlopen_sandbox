@@ -10,7 +10,8 @@ ext_modules = [
         "one_caller",
         sources = sorted(glob("src/*.cpp")),  # Sort source files for reproducibility
         libraries = ["racecar_runtime"],
-        library_dirs = ["/usr/local/lib"]
+        library_dirs = ["/usr/local/lib"],
+        extra_compile_args = ["-std=c++11"]
     ),
 ]
 
